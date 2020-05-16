@@ -22,7 +22,8 @@
     <script src="{% static 'myapp/js/sales_form.js' %}"></script>
   </head>
   <body>
-    <form method="POST" action="/sales/forms">
+
+    <form name="place_order" method="POST" action="/sales/forms">
       {% csrf_token %}
     <div class="container">
       <div class="row">
@@ -32,7 +33,32 @@
 
     <div class="container">
       <div class="row">
-        <h2>Step 1: Let Us Know Who Assisted You!</h2>
+        <h2>Step 1: Choose your drinks...</h2>
+      </div>
+      <div class="row">
+        {% for p in products %}
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-body item">
+              <h5 class="card-title">{{p.name}}</h5>
+              <p class="card-text">Price: $<span class="price">{{p.price}}</span>/cup</p>
+              <label> Select Quantity </label><input class="quantity" name={{p.name}} type="number" value="0" min="0" oninput="validity.valid||(value='');">
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-primary" onclick="add_items()"> Add to cart </button>
+      </div>
+      <div class="row">
+        <label> Total Amount </label> <input step="0.01" type="number" id="total" disabled name="total" value=0 />
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <h2>Step 2: Let Us Know Who Assisted You!</h2>
       </div>
       <div class="row">
       <select name="sales_rep" class="form-control">
@@ -45,68 +71,29 @@
 
     <div class="container">
       <div class="row">
-        <h2>Step 2: Choose your drinks...</h2>
-      </div>
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="card">
-
-            <div class="card-body">
-              <h5 class="card-title">Fresh Lemonade</h5>
-              <p class="card-text">Price: $1.50/cup</p>
-              <label> Select Quantity </label><input class="quantity" name="lemonade_quan" type="number" value="0" min="0" oninput="validity.valid||(value='');">
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-
-            <div class="card-body">
-              <h5 class="card-title">Orange-Lemon Splash</h5>
-              <p class="card-text">Price: $2.00/cup</p>
-              <label> Select Quantity </label><input class="quantity" name="orange_quan" type="number" value="0" min="0" oninput="validity.valid||(value='');">
-            </div>
-          </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="card">
-
-          <div class="card-body">
-            <h5 class="card-title">Sugary Shocker</h5>
-            <p class="card-text">Price: $3.00/cup</p>
-            <label> Select Quantity </label><input class="quantity" name="sugary_quan" type="number" value="0" min="0" oninput="validity.valid||(value='');">
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="card">
-
-          <div class="card-body">
-            <h5 class="card-title">Wild Whiskey Whack</h5>
-            <p class="card-text">Price: $5.50/cup</p>
-            <label> Select Quantity </label><input class="quantity" type="number" name="whiskey_quan" value="0" min="0">
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
         <input type="submit" class="btn btn-primary" value="Place Order" />
       </div>
     </div>
 
-    <!-- <div class="container">
-      <div class="row">
-        <form action="/your-name/" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    </div> -->
   </form>
+
+  {% block js %}
+  <script>
+    function add_items() {
+      var total = 0.00;
+      var order = "";
+      var item = document.getElementsByClassName("price");
+      for(i = 0;i < item.length; i++) {
+        var quantity = item[i].parentElement.parentElement.children[3].value;
+        if(quantity != 0) {
+          total = total + quantity * parseFloat(item[i].innerHTML);
+          order = order + quantity + " * " + item[i].parentElement.parentElement.children[0].innerText + "\n";
+        }
+      }
+      $("#total").val(total);
+    }
+  </script>
+  {% endblock %}
 
   </body>
 </html>

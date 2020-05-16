@@ -3,6 +3,5 @@ from . import views
 
 urlpatterns = [
 
-    path('sales/forms', views.sales),
-
+    path('sales/forms', views.sales), 
 ]

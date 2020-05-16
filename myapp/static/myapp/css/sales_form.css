@@ -16,6 +16,7 @@ body {
 
 .row {
   text-align: center;
+  padding: 10px 0;
 }
 
 .card-body {
@@ -28,4 +29,12 @@ body {
 
 img {
   overflow: hidden;
+}
+
+table {
+  width: 100%;
+}
+
+tr, th, td {
+  padding: 10px 10px;
 }

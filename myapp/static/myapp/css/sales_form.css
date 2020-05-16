@@ -1,0 +1,31 @@
+.product-image {
+  height: 200px;
+  width: 100%;
+}
+
+body {
+  background-color: #ebf7fc;
+}
+
+.card {
+  display: inline-block;
+  text-align: center;
+  background-color: #66CCFF;
+  border-radius: 10%;
+}
+
+.row {
+  text-align: center;
+}
+
+.card-body {
+  padding: 10%;
+}
+
+.container {
+  padding: 10px 0;
+}
+
+img {
+  overflow: hidden;
+}

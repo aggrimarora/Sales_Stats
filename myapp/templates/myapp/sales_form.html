@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sales Form</title>
+
+    <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- ************ -->
+
+    <!-- CSS Stylesheet -->
+      <link rel="stylesheet" href="{% static 'myapp/css/sales_form.css' %}">
+    <!-- ************ -->
+    <script src="{% static 'myapp/js/sales_form.js' %}"></script>
+  </head>
+  <body>
+    <form method="POST" action="/sales/forms">
+      {% csrf_token %}
+    <div class="container">
+      <div class="row">
+        <h1> Sales form </h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <h2>Step 1: Let Us Know Who Assisted You!</h2>
+      </div>
+      <div class="row">
+      <select name="sales_rep" class="form-control">
+        {% for rep in sales_rep %}
+          <option value="{{rep.id}}"> {{rep.EmployeeName}} </option>
+        {% endfor %}
+      </select>
+    </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <h2>Step 2: Choose your drinks...</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="card">
+            <img class="card-img-top product-image" src="{% static 'myapp/images/Lemonade.jpg' %}" alt="Lemon Lemonade">
+            <div class="card-body">
+              <h5 class="card-title">Fresh Lemonade</h5>
+              <p class="card-text">Price: $1.50/cup</p>
+              <label> Select Quantity </label><input class="quantity" name="lemonade_quan" type="number" placeholder="0" min="0" oninput="validity.valid||(value='');">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card">
+            <img class="card-img-top product-image" src="{% static 'myapp/images/Orange_Lemonade.jpg' %}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Orange-Lemon Splash</h5>
+              <p class="card-text">Price: $2.00/cup</p>
+              <label> Select Quantity </label><input class="quantity" name="orange_quan" type="number" placeholder="0" min="0" oninput="validity.valid||(value='');">
+            </div>
+          </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card">
+          <img class="card-img-top product-image" src="{% static 'myapp/images/Sugary_Shocker.jpg' %}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Sugary Shocker</h5>
+            <p class="card-text">Price: $3.00/cup</p>
+            <label> Select Quantity </label><input class="quantity" name="sugary_quan" type="number" placeholder="0" min="0" oninput="validity.valid||(value='');">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card">
+          <img class="card-img-top product-image" src="{% static 'myapp/images/Wild_Whiskey.jpg' %}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Wild Whiskey Whack</h5>
+            <p class="card-text">Price: $5.50/cup</p>
+            <label> Select Quantity </label><input class="quantity" type="number" name="whiskey_quan" placeholder="0" min="0">
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <input type="submit" class="btn btn-primary" value="Place Order" />
+      </div>
+    </div>
+
+    <!-- <div class="container">
+      <div class="row">
+        <form action="/your-name/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    </div> -->
+  </form>
+
+  </body>
+</html>

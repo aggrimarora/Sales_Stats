@@ -19,7 +19,7 @@ Sales Entry Form(Raw HTML)
 
 Sales Report Form(Django Model Form)
 
-  ![](/Sales_Report.jpg)
+  ![](/Sales_Report.png)
 
 
 

@@ -10,6 +10,9 @@ Running the project locally:
   6) open the defined paths:
         - 'localhost:8000/sales/form'
         - 'localhost:8000/sales/report'
+  7) Either create a new superuser to access 'localhost:8000/admin' or use thesec credentials:
+        - username: aggrimarora
+        - password: hello@123
 
 Entity-Relationship Diagram
 
@@ -20,10 +23,6 @@ Features:
   - To create the forms:
       * I created the order page using a raw HTML form (url: '/sales/form')
       * I created the report page using django model forms (url: '/sales/report')
-  - I have also added the models to the admin system
-      * To use this application, clone it, install required dependencies and here are the credentials for the admin system:
-          username: aggrimarora
-          password: hello@123
 
 Sales Entry Form(Raw HTML)
 

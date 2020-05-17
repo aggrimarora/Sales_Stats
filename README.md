@@ -1,5 +1,18 @@
 # Sales_Stats
 
+Running the project locally:
+
+  1) clone the git repository
+  2) open the project folder in terminal
+  3) I have added a requirements.txt file to the root directory
+  4) to install the packages and dependencies, run "pip3 install -r requirements.txt" in terminal
+  5) run "python3 manage.py runserver"
+  6) open the defined paths:
+        - 'localhost:8000/sales/form'
+        - 'localhost:8000/sales/report'
+
+Entity-Relationship Diagram
+
 ![](/Sales_ERD.jpg)
 
 Features:
@@ -14,7 +27,7 @@ Features:
 
 Sales Entry Form(Raw HTML)
 
-  - This form has been created by using dynamic templating so any changes in the database will be  reflected in the form        automatically.
+  - This form has been created by using dynamic templating so any changes in the database will be  reflected in the form   automatically.
   ![](/Sales_Entry.png)
 
 Sales Report Form(Django Model Form)

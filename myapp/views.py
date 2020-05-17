@@ -22,11 +22,13 @@ def sales(request):
         cart = request.POST.get('order')
         amount = float(request.POST.get('total'))
         print(request.POST)
+        #checks if order amount > 0
         if amount > 0:
             O = Order(RepID = SalesRep.objects.get(id=sales_rep_id), List = cart, Total = amount, Date = time)
             O.save()
             messages.success(request, "Your Order has been saved successfully")
-
+        else:
+            messages.add_message(request, messages.ERROR, "Your Cart is empty.")
 
     return render(request, 'myapp/sales_form.html', context)
 
@@ -41,12 +43,11 @@ def report(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
             start = form.cleaned_data['Start_Date']
             end = form.cleaned_data['End_Date']
             id = form.cleaned_data['RepID']
             print(request.POST)
+            #gets the required queries for the report
             q = Order.objects.filter(Date__date__gte = start, Date__date__lte = end, RepID = id)
             for query in q:
                 total_amount = total_amount + float(query.Total)

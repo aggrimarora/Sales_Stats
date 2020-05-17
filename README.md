@@ -13,12 +13,12 @@ Features:
           password: hello@123
 
 Sales Entry Form(Raw HTML)
-
-![](/Sales_Entry.jpg)
+  - This form has been created by using dynamic templating so any changes in the database will be  reflected in the form automatically.
+  ![](/Sales_Entry.jpg)
 
 Sales Report Form(Django Model Form)
 
-![](/Sales_Report.jpg)
+  ![](/Sales_Report.jpg)
 
 Aesthetics
 
@@ -28,6 +28,5 @@ Aesthetics
 * Once the form has been successfully submitted and the data saved, please add a clear message on top of the now empty form that the data has been saved. This message should disappear after 5 seconds.
 ![](/Success_Message_gif.gif)
 
-*Please add a read-only text field at the bottom of the form labeled "Total Price”. This field should dynamically update with the total price of the sale as the cashier chooses the items that make up the sale.
+* Please add a read-only text field at the bottom of the form labeled "Total Price”. This field should dynamically update with the total price of the sale as the cashier chooses the items that make up the sale.
 ![](/Order_Total_gif.gif)
-

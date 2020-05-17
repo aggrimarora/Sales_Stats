@@ -12,3 +12,11 @@ class ReportForm(ModelForm):
     class Meta:
         model = Order
         fields = ['RepID']
+
+    def clean(self):
+        form_data = self.cleaned_data
+        start = form_data['Start_Date']
+        end = form_data['End_Date']
+        if start > end:
+            self._errors["Start_Date"] = ["Start Date should be before the End Date"]
+        return form_data

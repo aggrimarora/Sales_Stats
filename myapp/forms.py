@@ -7,8 +7,8 @@ class DateInput(forms.DateInput):
 
 class ReportForm(ModelForm):
     error_css_class = 'error'
-    Start_Date = forms.DateField(widget=DateInput)
-    End_Date = forms.DateField(widget=DateInput)
+    Start_Date = forms.DateField(widget=DateInput(attrs={'class':''}))
+    End_Date = forms.DateField(widget=DateInput(attrs={'class':''}))
     class Meta:
         model = Order
         fields = ['RepID']

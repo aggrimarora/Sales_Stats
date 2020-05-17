@@ -1,5 +1,6 @@
 body {
   background-color: #ebf7fc;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .row {
@@ -15,12 +16,14 @@ body {
   background-color: #00C5D8;
 }
 
-.errorlist
-    {
-        color: red;
+.errorlist {
+  color: red;
 }
-
 
 .error {
   border-color: red;
+}
+
+ul {
+  list-style-type: none;
 }

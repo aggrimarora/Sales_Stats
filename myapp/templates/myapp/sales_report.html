@@ -24,6 +24,17 @@
   <body>
     <div class="container">
       <div class="row">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+{% endif %}
+    <div class="container">
+      <div class="row">
         <h1> Sales Report </h1>
       </div>
       <div class="row">
@@ -57,5 +68,14 @@
         </table>
       </div>
       </div>
+      {% block js %}
+      <script>
+        $(document).ready(function(){
+          $(".success").fadeTo(2000, 500).slideUp(500, function(){
+            $(".success").slideUp(600);
+          });
+        })
+      </script>
+      {% endblock %}
   </body>
 </html>

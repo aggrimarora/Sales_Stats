@@ -21,7 +21,7 @@
     <!-- ************ -->
   </head>
   <body>
-
+    
     <form name="place_order" method="POST" action="/sales/form">
       {% csrf_token %}
     <div class="container">
@@ -51,7 +51,7 @@
         <button type="button" class="btn btn-primary" onclick="add_items()"> Add to cart </button>
       </div>
       <div class="row">
-        <textarea readonly id="order_items" name="order"> </textarea>
+        <textarea rows="5" cols="80" readonly id="order_items" name="order"> </textarea>
       </div>
       <div class="row">
         <label> Total Amount </label> <input id="total" readonly name="total" value=0 />
@@ -81,6 +81,7 @@
 
   {% block js %}
   <script>
+
     function add_items() {
       var total = 0.00;
       var order = "";

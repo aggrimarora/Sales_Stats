@@ -1,0 +1,61 @@
+{% load static %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- ************ -->
+
+    <!-- CSS Stylesheet -->
+      <link rel="stylesheet" href="{% static 'myapp/css/sales_report.css' %}">
+    <!-- ************ -->
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1> Sales Report </h1>
+      </div>
+      <div class="row">
+        <form action="/sales/report" method="post">
+          {% csrf_token %}
+          {{ form }}
+          <input type="submit" value="Generate Report">
+        </form>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tr>
+            <th> Date </th>
+            <th> Items Sold </th>
+            <th> Total Price </th>
+            <th>Commission Earned </th>
+          </tr>
+          {% for r in report %}
+          <tr>
+            <td> {{r.Date}} </td>
+            <td> {{r.List}} </td>
+            <td> ${{r.Total}} </td>
+            <td>  ${{r.Total|mul:com|floatformat:"3" }}</td>
+          </tr>
+          {% endfor %}
+          <tr class="last">
+            <td colspan="2"> Total </td>
+            <td> ${{total_price}} </td>
+            <td> ${{total}} </td>
+          </tr>
+        </table>
+      </div>
+      </div>
+  </body>
+</html>

@@ -19,11 +19,10 @@
     <!-- CSS Stylesheet -->
       <link rel="stylesheet" href="{% static 'myapp/css/sales_form.css' %}">
     <!-- ************ -->
-    <script src="{% static 'myapp/js/sales_form.js' %}"></script>
   </head>
   <body>
 
-    <form name="place_order" method="POST" action="/sales/forms">
+    <form name="place_order" method="POST" action="/sales/form">
       {% csrf_token %}
     <div class="container">
       <div class="row">
@@ -52,7 +51,10 @@
         <button type="button" class="btn btn-primary" onclick="add_items()"> Add to cart </button>
       </div>
       <div class="row">
-        <label> Total Amount </label> <input step="0.01" type="number" id="total" disabled name="total" value=0 />
+        <textarea readonly id="order_items" name="order"> </textarea>
+      </div>
+      <div class="row">
+        <label> Total Amount </label> <input id="total" readonly name="total" value=0 />
       </div>
     </div>
 
@@ -91,6 +93,7 @@
         }
       }
       $("#total").val(total);
+      $("#order_items").val(order);
     }
   </script>
   {% endblock %}

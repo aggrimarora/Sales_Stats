@@ -19,8 +19,7 @@ class Product(models.Model):
     price = models.CharField(max_length = 50)
 
 class Order(models.Model):
-    ProductID = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     RepID = models.ForeignKey(SalesRep, null=True, on_delete=models.SET_NULL)
-    Quantity = models.IntegerField()
+    List = models.CharField(max_length = 500, default="")
     Total = models.DecimalField(max_digits=6, decimal_places=2)
     Date = models.DateTimeField(default=datetime.now())

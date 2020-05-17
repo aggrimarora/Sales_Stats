@@ -1,0 +1,26 @@
+body {
+  background-color: #ebf7fc;
+}
+
+.row {
+  text-align: center;
+  padding: 10px;
+}
+
+.table {
+  text-align: left;
+}
+
+.last {
+  background-color: #00C5D8;
+}
+
+.errorlist
+    {
+        color: red;
+}
+
+
+.error {
+  border-color: red;
+}

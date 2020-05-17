@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import SalesRep, Product, Order
 from datetime import datetime
+from .forms import ReportForm
 
 # Create your views here.
 def contact(request):
@@ -15,23 +16,41 @@ def sales(request):
 
     if request.method == "POST":
         time = datetime.now()
+        sales_rep_id = int(request.POST.get('sales_rep'))
+        cart = request.POST.get('order')
+        amount = float(request.POST.get('total'))
         print(request.POST)
-        # sales_rep_id = int(request.POST.get('sales_rep'))
-        # lemon = int(request.POST.get('lemonade_quan'))
-        # orange = int(request.POST.get('orange_quan'))
-        # sugary = int(request.POST.get('sugary_quan'))
-        # ww = int(request.POST.get('whiskey_quan'))
-        # if lemon != 0:
-        #     O = Order(ProductID = Product.objects.get(id=1), RepID = SalesRep.objects.get(id=sales_rep_id), Quantity = lemon, Total = 1.50 * lemon, Date = time)
-        #     O.save()
-        # if orange != 0:
-        #     O = Order(ProductID = Product.objects.get(id=2), RepID = SalesRep.objects.get(id=sales_rep_id), Quantity = orange, Total = 2.00 * lemon, Date = time)
-        #     O.save()
-        # if sugary != 0:
-        #     O = Order(ProductID = Product.objects.get(id=3), RepID = SalesRep.objects.get(id=sales_rep_id), Quantity = sugary, Total = 3.00 * lemon, Date = time)
-        #     O.save()
-        # if ww != 0:
-        #     O = Order(ProductID = Product.objects.get(id=3), RepID = SalesRep.objects.get(id=sales_rep_id), Quantity = sugary, Total = 5.50 * lemon, Date = time)
-        #     O.save()
+        if amount > 0:
+            O = Order(RepID = SalesRep.objects.get(id=sales_rep_id), List = cart, Total = amount, Date = time)
+            O.save()
 
     return render(request, 'myapp/sales_form.html', context)
+
+def report(request):
+    report = None
+    c = None
+    earned = 0.00
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ReportForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            start = form.cleaned_data['Start_Date']
+            end = form.cleaned_data['End_Date']
+            id = form.cleaned_data['RepID']
+            print(request.POST)
+            q = Order.objects.filter(Date__date__gte = start, Date__date__lte = end, RepID = id)
+            for query in q:
+                earned = earned + ((float(id.commission)/100) * float(query.Total))
+            earned = round(earned, 2)
+            c = (float(id.commission)/100)
+            report = q
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ReportForm()
+
+    return render(request, 'myapp/sales_report.html', {'form' : form , 'report' : report, 'com' : c, 'total' : earned, 'total_price' : earned})

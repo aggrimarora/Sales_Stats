@@ -25,6 +25,7 @@ def sales(request):
         if amount > 0:
             O = Order(RepID = SalesRep.objects.get(id=sales_rep_id), List = cart, Total = amount, Date = time)
             O.save()
+            messages.success(request, "Your Order has been saved successfully")
 
 
     return render(request, 'myapp/sales_form.html', context)

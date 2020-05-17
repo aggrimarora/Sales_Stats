@@ -21,7 +21,19 @@
     <!-- ************ -->
   </head>
   <body>
-    
+
+    <div class="container">
+      <div class="row">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+
     <form name="place_order" method="POST" action="/sales/form">
       {% csrf_token %}
     <div class="container">
@@ -81,6 +93,12 @@
 
   {% block js %}
   <script>
+
+    $(document).ready(function(){
+      $(".success").fadeTo(2000, 500).slideUp(500, function(){
+        $(".success").slideUp(600);
+      });
+    })
 
     function add_items() {
       var total = 0.00;

@@ -13,21 +13,16 @@ Features:
           password: hello@123
 
 Sales Entry Form(Raw HTML)
-<<<<<<< HEAD
-  - This form has been created by using dynamic templating so any changes in the database will be  reflected in the form automatically.
-  ![](/Sales_Entry.jpg)
+
+  - This form has been created by using dynamic templating so any changes in the database will be  reflected in the form        automatically.
+  ![](/Sales_Entry.png)
 
 Sales Report Form(Django Model Form)
 
   ![](/Sales_Report.jpg)
-=======
 
-![](/Sales_Entry.png)
 
-Sales Report Form(Django Model Form)
 
-![](/Sales_Report.png)
->>>>>>> d9e969e10e9d322936a31d95f7eae7949fd6e413
 
 Aesthetics
 

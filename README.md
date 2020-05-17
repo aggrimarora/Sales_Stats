@@ -14,11 +14,11 @@ Features:
 
 Sales Entry Form(Raw HTML)
 
-![](/Sales_Entry.jpg)
+![](/Sales_Entry.png)
 
 Sales Report Form(Django Model Form)
 
-![](/Sales_Report.jpg)
+![](/Sales_Report.png)
 
 Aesthetics
 

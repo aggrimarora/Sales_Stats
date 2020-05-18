@@ -6,6 +6,7 @@ Running the project locally:
   2) open the project folder in terminal
   3) I have added a requirements.txt file to the root directory
   4) to install the packages and dependencies, run "pip3 install -r requirements.txt" in terminal
+      or you might have to run "sudo pip3 install -r requirements.txt"
   5) run "python3 manage.py runserver"
   6) open the defined paths:
         - 'localhost:8000/sales/form'

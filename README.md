@@ -11,7 +11,7 @@ Running the project locally:
   6) open the defined paths:
         - 'localhost:8000/sales/form'
         - 'localhost:8000/sales/report'
-  7) Either create a new superuser to access 'localhost:8000/admin' or use thesec credentials:
+  7) Either create a new superuser to access 'localhost:8000/admin' or use these credentials:
         - username: aggrimarora
         - password: hello@123
 
